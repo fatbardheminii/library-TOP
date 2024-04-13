@@ -1,156 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/c815d48bf5.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/c815d48bf5.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <header>
-        <h2 class="header-title">Private Library</h2>
-        <ul class="nav-right">
-            <li><a href="">My Books</a></li>
-            <li><a href="">Best Sellers</a></li>
-            <li><a href="">Recommendations</a></li>
-        </ul>
+      <h2 class="header-title">Private Library</h2>
+      <ul class="nav-right">
+        <li><a href="" class="my-books-nav">My Books</a></li>
+        <li><a href="" class="best-sellers-nav">Best Sellers</a></li>
+        <li><a href="" class="recommendations-nav">Recommendations</a></li>
+      </ul>
     </header>
     <main>
-        <button class="add-new-book">Add new book</button>
+      <button class="add-new-book"><i class="fa-solid fa-plus"></i>Add new Book</button>
+      <div class="row">
+        <h3 class="row-title">My Books</h3>
         <div class="my-books-row">
-            <h3 class="row-title">My Books</h3>
-            <div class="row">
-                <div class="book-card">
-                <p class="title"><span>Title:</span>"Hello There"</p>
-                <p class="author"><span>Author:</span>"John Doe"</p>
-                <p class="pages"><span>Pages:</span>12</p>
-                <p class="genre"><span>Genre:</span>"Adventure"</p>
-                <button class="read-check">Icon-read</button>
-                <div class="edit-delete-wrap">
-                    <button class="edit-book"><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete-book"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+          <div class="book-card">
+            <div class="title">
+              <span class="span-title">Title:</span>
+              <p class="p-title">Hello There</p>
             </div>
-            <div class="book-card">
-                <p class="title"><span>Title:</span>"Hello There"</p>
-                <p class="author"><span>Author:</span>"John Doe"</p>
-                <p class="pages"><span>Pages:</span>12</p>
-                <p class="genre"><span>Genre:</span>"Adventure"</p>
-                <button class="read-check">Icon-read</button>
-                <div class="edit-delete-wrap">
-                    <button class="edit-book"><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete-book"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+            <div class="author">
+              <span class="span-author">Author:</span>
+              <p class="p-author">John Doe</p>
             </div>
-            <div class="book-card">
-                <p class="title"><span>Title:</span>"Hello There"</p>
-                <p class="author"><span>Author:</span>"John Doe"</p>
-                <p class="pages"><span>Pages:</span>12</p>
-                <p class="genre"><span>Genre:</span>"Adventure"</p>
-                <button class="read-check">Icon-read</button>
-                <div class="edit-delete-wrap">
-                    <button class="edit-book"><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete-book"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+            <div class="pages">
+              <span class="span-pages">Pages:</span>
+              <p class="p-pages">22</p>
             </div>
-            <button class="add-my-book">Add new Book to Library</button>
+            <div class="genre">
+              <span class="span-genre">Genre:</span>
+              <p class="p-genre">Adventure</p>
             </div>
+            <div class="button-read">
+              <button class="read-check">Read</button>
+            </div>
+            <div class="delete-box">
+              <button class="delete-book">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+          <div class="book-card">
+            <div class="title">
+              <span class="span-title">Title:</span>
+              <p class="p-title">Hello There</p>
+            </div>
+            <div class="author">
+              <span class="span-author">Author:</span>
+              <p class="p-author">John Doe</p>
+            </div>
+            <div class="pages">
+              <span class="span-pages">Pages:</span>
+              <p class="p-pages">22</p>
+            </div>
+            <div class="genre">
+              <span class="span-genre">Genre:</span>
+              <p class="p-genre">Adventure</p>
+            </div>
+            <div class="button-read">
+              <button class="read-check">Read</button>
+            </div>
+            <div class="delete-box">
+              <button class="delete-book">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+          <div class="book-card">
+            <div class="title">
+              <span class="span-title">Title:</span>
+              <p class="p-title">Hello There</p>
+            </div>
+            <div class="author">
+              <span class="span-author">Author:</span>
+              <p class="p-author">John Doe</p>
+            </div>
+            <div class="pages">
+              <span class="span-pages">Pages:</span>
+              <p class="p-pages">22</p>
+            </div>
+            <div class="genre">
+              <span class="span-genre">Genre:</span>
+              <p class="p-genre">Adventure</p>
+            </div>
+            <div class="button-read">
+              <button class="read-check">Read</button>
+            </div>
+            <div class="delete-box">
+              <button class="delete-book">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <h3 class="row-title">Best Sellers</h3>
         <div class="best-sellers-row">
-            <h3 class="row-title">Best Sellers</h3>
-            <div class="row">
-                <div class="book-card">
-                <p class="title"><span>Title:</span>"Hello There"</p>
-                <p class="author"><span>Author:</span>"John Doe"</p>
-                <p class="pages"><span>Pages:</span>12</p>
-                <p class="genre"><span>Genre:</span>"Adventure"</p>
-                <button class="read-check">Icon-read</button>
-                <div class="edit-delete-wrap">
-                    <button class="edit-book"><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete-book"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+          <div class="book-card">
+            <div class="title">
+              <span class="span-title">Title:</span>
+              <p class="p-title">Hello There</p>
             </div>
-            <div class="book-card">
-                <p class="title"><span>Title:</span>"Hello There"</p>
-                <p class="author"><span>Author:</span>"John Doe"</p>
-                <p class="pages"><span>Pages:</span>12</p>
-                <p class="genre"><span>Genre:</span>"Adventure"</p>
-                <button class="read-check">Icon-read</button>
-                <div class="edit-delete-wrap">
-                    <button class="edit-book"><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete-book"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+            <div class="author">
+              <span class="span-author">Author:</span>
+              <p class="p-author">John Doe</p>
             </div>
-            <div class="book-card">
-                <p class="title"><span>Title:</span>"Hello There"</p>
-                <p class="author"><span>Author:</span>"John Doe"</p>
-                <p class="pages"><span>Pages:</span>12</p>
-                <p class="genre"><span>Genre:</span>"Adventure"</p>
-                <button class="read-check">Icon-read</button>
-                <div class="edit-delete-wrap">
-                    <button class="edit-book"><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete-book"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+            <div class="pages">
+              <span class="span-pages">Pages:</span>
+              <p class="p-pages">22</p>
             </div>
-            <button class="add-best-sellers">Add new Best Sellers</button>
+            <div class="genre">
+              <span class="span-genre">Genre:</span>
+              <p class="p-genre">Adventure</p>
             </div>
+            <div class="button-read">
+              <button class="read-check">Read</button>
+            </div>
+            <div class="delete-box">
+              <button class="delete-book">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+          <div class="book-card">
+            <div class="title">
+              <span class="span-title">Title:</span>
+              <p class="p-title">Hello There</p>
+            </div>
+            <div class="author">
+              <span class="span-author">Author:</span>
+              <p class="p-author">John Doe</p>
+            </div>
+            <div class="pages">
+              <span class="span-pages">Pages:</span>
+              <p class="p-pages">22</p>
+            </div>
+            <div class="genre">
+              <span class="span-genre">Genre:</span>
+              <p class="p-genre">Adventure</p>
+            </div>
+            <div class="button-read">
+              <button class="read-check">Read</button>
+            </div>
+            <div class="delete-box">
+              <button class="delete-book">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+          <div class="book-card">
+            <div class="title">
+              <span class="span-title">Title:</span>
+              <p class="p-title">Hello There</p>
+            </div>
+            <div class="author">
+              <span class="span-author">Author:</span>
+              <p class="p-author">John Doe</p>
+            </div>
+            <div class="pages">
+              <span class="span-pages">Pages:</span>
+              <p class="p-pages">22</p>
+            </div>
+            <div class="genre">
+              <span class="span-genre">Genre:</span>
+              <p class="p-genre">Adventure</p>
+            </div>
+            <div class="button-read">
+              <button class="read-check">Read</button>
+            </div>
+            <div class="delete-box">
+              <button class="delete-book">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <h3 class="row-title">Recommendations</h3>
         <div class="recommendations-row">
-            <h3 class="row-title">Recommendations</h3>
-            <div class="row">
-                <div class="book-card">
-                <p class="title"><span>Title:</span>"Hello There"</p>
-                <p class="author"><span>Author:</span>"John Doe"</p>
-                <p class="pages"><span>Pages:</span>12</p>
-                <p class="genre"><span>Genre:</span>"Adventure"</p>
-                <button class="read-check">Icon-read</button>
-                <div class="edit-delete-wrap">
-                    <button class="edit-book"><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete-book"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
-            </div>
             <div class="book-card">
-                <p class="title"><span>Title:</span>"Hello There"</p>
-                <p class="author"><span>Author:</span>"John Doe"</p>
-                <p class="pages"><span>Pages:</span>12</p>
-                <p class="genre"><span>Genre:</span>"Adventure"</p>
-                <button class="read-check">Icon-read</button>
-                <div class="edit-delete-wrap">
-                    <button class="edit-book"><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete-book"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+            <div class="title">
+              <span class="span-title">Title:</span>
+              <p class="p-title">Hello There</p>
             </div>
-            <div class="book-card">
-                <p class="title"><span>Title:</span>"Hello There"</p>
-                <p class="author"><span>Author:</span>"John Doe"</p>
-                <p class="pages"><span>Pages:</span>12</p>
-                <p class="genre"><span>Genre:</span>"Adventure"</p>
-                <button class="read-check">Icon-read</button>
-                <div class="edit-delete-wrap">
-                    <button class="edit-book"><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete-book"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+            <div class="author">
+              <span class="span-author">Author:</span>
+              <p class="p-author">John Doe</p>
             </div>
-            <button class="add-recommendation">Add new Recommendation</button>
+            <div class="pages">
+              <span class="span-pages">Pages:</span>
+              <p class="p-pages">22</p>
             </div>
+            <div class="genre">
+              <span class="span-genre">Genre:</span>
+              <p class="p-genre">Adventure</p>
+            </div>
+            <div class="button-read">
+              <button class="read-check">Read</button>
+            </div>
+            <div class="delete-box">
+              <button class="delete-book">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+          <div class="book-card">
+            <div class="title">
+              <span class="span-title">Title:</span>
+              <p class="p-title">Hello There</p>
+            </div>
+            <div class="author">
+              <span class="span-author">Author:</span>
+              <p class="p-author">John Doe</p>
+            </div>
+            <div class="pages">
+              <span class="span-pages">Pages:</span>
+              <p class="p-pages">22</p>
+            </div>
+            <div class="genre">
+              <span class="span-genre">Genre:</span>
+              <p class="p-genre">Adventure</p>
+            </div>
+            <div class="button-read">
+              <button class="read-check">Read</button>
+            </div>
+            <div class="delete-box">
+              <button class="delete-book">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+          <div class="book-card">
+            <div class="title">
+              <span class="span-title">Title:</span>
+              <p class="p-title">Hello There</p>
+            </div>
+            <div class="author">
+              <span class="span-author">Author:</span>
+              <p class="p-author">John Doe</p>
+            </div>
+            <div class="pages">
+              <span class="span-pages">Pages:</span>
+              <p class="p-pages">22</p>
+            </div>
+            <div class="genre">
+              <span class="span-genre">Genre:</span>
+              <p class="p-genre">Adventure</p>
+            </div>
+            <div class="button-read">
+              <button class="read-check">Read</button>
+            </div>
+            <div class="delete-box">
+              <button class="delete-book">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </main>
     <aside>
-        <h3 class="aside-title">General Informations</h3>
-        <p class="total-books"><span>Total Books: </span><br>8</p>
-        <p class="read-books-num"><span>Read Books: </span><br>5</p>
-        <p class="unread-books-num"><span>Unread Books: </span><br>3</p>
-        <p class="total-pages"><span>Total Pages:</span> 2024</p>
-        
+      <h3 class="aside-title">General Information</h3>
+      <div class="aside-item">
+        <span>Total Books: </span>
+        <p class="total-books">8</p>
+      </div>
+      <div class="aside-item">
+        <span>Read Books: </span>
+        <p class="read-books-num">5</p>
+      </div>
+      <div class="aside-item">
+        <span>Unread Books: </span>
+        <p class="unread-books-num">3</p>
+      </div>
+      <div class="aside-item">
+        <span>Total Pages: </span>
+        <p class="total-pages">2024</p>
+      </div>
     </aside>
     <footer>
-        <h3 class="footer">
-            Copyright F.Emini 
-        </h3>
+      <h3 class="footer">Copyright F.Emini</h3>
     </footer>
-
+    <div class="overlay"></div>
+    <div class="form">
+      <form action="" id="form">
+        <div class="x-icon">
+          <i class="fa-solid fa-xmark"></i><br />
+        </div>
+        <h3 class="form-title">Add new Book</h3>
+        <label for="title-form">Title<span aria-required="true" class="span-form">*</span>:</label><br />
+        <input type="text" name="title" id="title-form" required placeholder="Title of Book" minlength="2" maxlength="30"/><br />
+        <label for="author-form">Author<span aria-required="true" class="span-form">*</span>: </label><br />
+        <input type="text" name="author" id="author-form" required placeholder="Author of Book" minlength="2" maxlength="30"/><br />
+        <label for="pages-form">Pages<span aria-required="true" class="span-form">*</span>: </label><br />
+        <input type="number" name="pages" id="pages-form" required placeholder="Number of Pages" min="10"/><br />
+        <label for="genre-form">Genre<span aria-required="true" class="span-form">*</span>: </label><br />
+        <input type="text" name="genre" id="genre-form" required placeholder="Genre of Book"/><br />
+        <label for="read-check-form">Have you read this book? </label><br />
+        <label for="read-check-form">Yes</label>
+        <input type="checkbox" name="read-check" id="read-check-form" /><br />
+        <label for="category">Choose category<span aria-required="true" class="span-form">*</span>:</label><br />
+        <select id="category" name="category" required>
+          <option value="my-books">My Books</option>
+          <option value="best-sellers">Best Sellers</option>
+          <option value="recommendations">Recommendations</option></select
+        ><br />
+        <button type="submit" id="form-btn">Add New Book</button>
+      </form>
+    </div>
 
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
