@@ -8,6 +8,11 @@ const formBtn = document.getElementById("form-btn");
 const myBooksRow = document.querySelector(".my-books-row");
 const bestSellersRow = document.querySelector(".best-sellers-row");
 const recommendationsRow = document.querySelector(".recommendations-row");
+//aside
+const totalBooksNum = document.querySelector('.total-books');
+const readBooksNum = document.querySelector(".read-books-num");
+const notReadBooksNum = document.querySelector(".unread-books-num");
+const totalPagesNum = document.querySelector(".total-pages");
 //form
 const formDiv = document.querySelector(".form");
 const overlay = document.querySelector(".overlay");
@@ -84,15 +89,23 @@ function CreateBookCard(title, author, pages, genre, isRead, targetRowClass) {
   this.author = author;
   this.pages = pages;
   this.genre = genre;
+  this.isRead = isRead;
+  this.targetRowClass = targetRowClass;
 
   // Use the specified targetRowClass to determine the target row
+  //targetArray used to push the new created books to arrays
+  //targetRow used to display the new created books to each row in webpage
   let targetRow;
+  let targetArray;
   if (targetRowClass === "my-books") {
     targetRow = myBooksRow;
+    targetArray = myBooksArray;
   } else if (targetRowClass === "best-sellers") {
     targetRow = bestSellersRow;
+    targetArray = bestSellersArray;
   } else if (targetRowClass === "recommendations") {
     targetRow = recommendationsRow;
+    targetArray = recommendationsArray;
   } else {
     console.error("Invalid target row class:", targetRowClass);
     return; // Exit function if invalid target row class is provided
@@ -142,15 +155,19 @@ function CreateBookCard(title, author, pages, genre, isRead, targetRowClass) {
   const deleteBtn = newBookCard.querySelector(".delete-book");
   deleteBtn.addEventListener("click", deleteBook);
 
-    if (isRead) {
-      // Book is marked as read
-      checkReadBtn.style.backgroundColor = "rgba(68, 197, 68, 0.61)";
-      newBookCard.style.boxShadow = "3px 3px 10px green";
-    } else {
-      // Book is not marked as read
-      checkReadBtn.style.backgroundColor = "red";
-      newBookCard.style.boxShadow = "3px 3px 10px red";
-    }
+  if (isRead) {
+    // Book is marked as read
+    checkReadBtn.style.backgroundColor = "rgba(68, 197, 68, 0.61)";
+    newBookCard.style.boxShadow = "3px 3px 10px green";
+  } else {
+    // Book is not marked as read
+    checkReadBtn.style.backgroundColor = "red";
+    newBookCard.style.boxShadow = "3px 3px 10px red";
+  }
+  //books are pushed whenever new object is created(func CreateBookCard is called), through console of form
+  pushBookToArray(this, targetArray);
+  //aside data are updated whenever new object is created(func CreateBookCard is called), through console of form
+  updateAsideData();
 }
 
 function pushBookToArray(book, row) {
@@ -165,7 +182,8 @@ function handleFormSubmit(event) {
   // Get form input values
   const title = document.getElementById("title-form").value;
   const author = document.getElementById("author-form").value;
-  const pages = document.getElementById("pages-form").value;
+  //convert pages value from string to number-- necessary for updateAsideData
+  const pages = parseInt(document.getElementById("pages-form").value, 10);
   const genre = document.getElementById("genre-form").value;
   const isRead = document.getElementById("read-check-form").checked;
   const category = document.getElementById("category").value;
@@ -182,9 +200,6 @@ function handleFormSubmit(event) {
     targetRow = recommendationsArray;
   }
 
-  //push book to myLibrary and to specific row
-  pushBookToArray(newFormBook, targetRow);
-
   // Reset form fields after submission
   const form = document.getElementById("form");
   form.reset();
@@ -197,26 +212,28 @@ formBtn.addEventListener("click", hideForm);
 
 //ADD BOOKS
 // Create books using CreateBookCard function with abbreviated names
-const killBird = new CreateBookCard("To Kill a Mockingbird", "Harper Lee", 281, "Fiction", true, "my-books");
+const killBird = new CreateBookCard("To Kill a Mockingbird", "Harper Lee", 281, "Fiction", false, "my-books");
 const n1984 = new CreateBookCard("1984", "George Orwell", 328, "Dystopian Fiction", true, "my-books");
 const greatGatsby = new CreateBookCard("The Great Gatsby", "F. Scott Fitzgerald", 180, "Classic Literature", false, "my-books");
 const prideAndPrejudice = new CreateBookCard("Pride and Prejudice", "Jane Austen", 279, "Romance, Classic Literature", false, "best-sellers");
-const catcherInRye = new CreateBookCard("The Catcher in the Rye", "J.D. Salinger", 277, "Coming-of-Age Fiction", true, "best-sellers");
+const catcherInRye = new CreateBookCard("The Catcher in the Rye", "J.D. Salinger", 277, "Coming-of-Age Fiction", false, "best-sellers");
 const theHobbit = new CreateBookCard("The Hobbit", "J.R.R. Tolkien", 310, "Fantasy", true, "best-sellers");
 const harryPotter = new CreateBookCard("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 223, "Fantasy, Young Adult", false, "recommendations");
-const daVinciCode = new CreateBookCard("The Da Vinci Code", "Dan Brown", 454, "Mystery, Thriller", true, "recommendations");
+const daVinciCode = new CreateBookCard("The Da Vinci Code", "Dan Brown", 454, "Mystery, Thriller", false, "recommendations");
+const daVinciCodes = new CreateBookCard("The Da Vinci Code", "Dan Brown", 454, "Mystery, Thriller", true, "recommendations");
 
-// Push books to arrays 
-pushBookToArray(killBird, myBooksArray);
-pushBookToArray(n1984, myBooksArray);
-pushBookToArray(greatGatsby, myBooksArray);
+//aside data
+function updateAsideData() {
+  totalBooksNum.textContent = myLibrary.length;
+  readBooksNum.textContent = myLibrary.filter((book) => book.isRead === true).length;
+  notReadBooksNum.textContent = myLibrary.filter((book) => book.isRead === false).length;
+  totalPagesNum.textContent = myLibrary.reduce((accumulator, book) => {
+    return accumulator += book.pages; 
+  }, 0);
+}
 
-pushBookToArray(prideAndPrejudice, bestSellersArray);
-pushBookToArray(catcherInRye, bestSellersArray);
-pushBookToArray(theHobbit, bestSellersArray);
+updateAsideData();
 
-pushBookToArray(harryPotter, recommendationsArray);
-pushBookToArray(daVinciCode, recommendationsArray);
 
 
 

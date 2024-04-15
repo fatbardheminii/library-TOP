@@ -108,10 +108,10 @@ main {
 .my-books-row,
 .best-sellers-row,
 .recommendations-row {
-  display: flex;
+  display: grid;
   justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem .25rem;
   margin: 0.5rem 2rem;
   padding: 0.75rem 0;
 }
@@ -149,8 +149,17 @@ main {
   background-color: #faf8f8e3;
 }
 
+.book-card:hover {
+  transform: scale(1.05);
+  transition: all ease-out .5s;
+}
+
 .book-card > * {
   margin-bottom: 0.35rem;
+}
+
+.book-card p {
+  text-align: right;
 }
 
 .title,
