@@ -60,6 +60,11 @@ li {
   background-color: rgba(68, 197, 68, 0.61);
   transition: all ease-out 0.5s;
   cursor: pointer;
+} 
+
+li:last-child {
+  width: 180px;
+  padding: .5rem;
 }
 
 li:hover {
@@ -408,4 +413,7 @@ input[type="checkbox"] {
   .add-new-book {
     margin: 0.5rem;
   }
+  li:last-child {
+  width: 150px;
+}
 }
