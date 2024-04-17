@@ -13,10 +13,14 @@ const totalBooksNum = document.querySelector('.total-books');
 const readBooksNum = document.querySelector(".read-books-num");
 const notReadBooksNum = document.querySelector(".unread-books-num");
 const totalPagesNum = document.querySelector(".total-pages");
+const aside = document.querySelector('aside');
+const asideInfoIcon = document.querySelector(".fa-circle-info");
+const xIconDivAside = document.querySelector(".x-icon-div-aside");
+const xIconAside = document.querySelector("#x-icon-aside");
 //form
 const formDiv = document.querySelector(".form");
 const overlay = document.querySelector(".overlay");
-const xIcon = document.querySelector(".fa-xmark");
+const xIcon = document.querySelector("#x-icon-form");
 
 const bookCard = document.querySelectorAll(".book-card");
 //display and hide Form functions, and eventListeners attached to addBookBtn and xIcon
@@ -44,34 +48,65 @@ document.body.addEventListener("click", function (event) {
     hideForm();
   }
 });
-//style bookCard based on read Status, attach eventListener to each of them
+
 function toggleReadStatus(checkBtn) {
   const bookCard = checkBtn.closest(".book-card");
   if (bookCard) {
     const isRead = checkBtn.textContent === "Read"; // Check if book is marked as read
+    const titleElement = bookCard.querySelector(".p-title");
+    const book = myLibrary.find(
+      (book) => book.title === titleElement.textContent
+    ); // Find the corresponding book object in myLibrary array
+
     if (isRead) {
       checkBtn.style.backgroundColor = "red";
       checkBtn.textContent = "Not Read";
       bookCard.style.boxShadow = "3px 3px 10px red";
+      book.isRead = false; // Update isRead property of the book object
+      updateAsideData();
     } else {
       checkBtn.style.backgroundColor = "rgba(68, 197, 68, 0.61)";
       checkBtn.textContent = "Read";
       bookCard.style.boxShadow = "3px 3px 10px green";
+      book.isRead = true; // Update isRead property of the book object
+      updateAsideData();
     }
   }
 }
 
 
-checkReadBtn.forEach((checkBtn) => {
-  checkBtn.addEventListener("click", function () {
-    toggleReadStatus(checkBtn);
-  });
-});
 //deleteBtn clicked -> delete bookCard
 function deleteBook(event) {
   //target the bookCard via closest
-  const bookItem = event.target.closest(".book-card");
-  bookItem.remove();
+  const bookCard = event.target.closest(".book-card");
+  if (bookCard) {
+    const titleElement = bookCard.querySelector(".p-title");
+    const book = myLibrary.find(
+      (book) => book.title === titleElement.textContent
+    ); // Find corresponding book object in myLibrary array
+    if( book.targetRowClass === 'my-books') {
+      const rowArrayIndex = myBooksArray.findIndex(
+        (book) => book.title === titleElement.textContent
+      );
+      myBooksArray.splice(rowArrayIndex, 1);
+    } else if (book.targetRowClass === 'best-sellers') {
+      const rowArrayIndex = bestSellersArray.findIndex(
+        (book) => book.title === titleElement.textContent
+      );
+      bestSellersArray.splice(rowArrayIndex, 1);
+    } else if (book.targetRowClass === 'recommendations') {
+      const rowArrayIndex = recommendationsArray.findIndex(
+        (book) => book.title === titleElement.textContent
+      );
+      recommendationsArray.splice(rowArrayIndex, 1);
+    }
+    const myLibraryIndex = myLibrary.findIndex(
+      (book) => book.title === titleElement.textContent
+    ); // Find the index of corresponding book object in myLibrary array
+    bookCard.remove(); //remove from display
+    myLibrary.splice(myLibraryIndex, 1); //remove object from array
+    updateAsideData();
+  }
 }
 
 deleteBookBtn.forEach((bookCard) => {
@@ -148,7 +183,7 @@ function CreateBookCard(title, author, pages, genre, isRead, targetRowClass) {
   // Get the read-check button and add event listener
   const checkReadBtn = newBookCard.querySelector(".read-check");
   checkReadBtn.addEventListener("click", function () {
-    toggleReadStatus(checkReadBtn);
+      toggleReadStatus(checkReadBtn);
   });
 
   // Get the delete-book button and add event listener
@@ -177,6 +212,11 @@ function pushBookToArray(book, row) {
 
 // Function to handle form submission
 function handleFormSubmit(event) {
+   const form = event.target;
+   if (!form.checkValidity()) {
+     // If form validation fails, let the browser handle it
+     return;
+   }
   event.preventDefault(); // Prevent default form submission behavior
 
   // Get form input values
@@ -201,13 +241,13 @@ function handleFormSubmit(event) {
   }
 
   // Reset form fields after submission
-  const form = document.getElementById("form");
   form.reset();
+  hideForm();
 }
 
 // Add event listener to form submit button
-formBtn.addEventListener('click', handleFormSubmit);
-formBtn.addEventListener("click", hideForm);
+formDiv.addEventListener('submit', handleFormSubmit);
+//formBtn.addEventListener("click", hideForm);
 
 
 //ADD BOOKS
@@ -220,7 +260,7 @@ const catcherInRye = new CreateBookCard("The Catcher in the Rye", "J.D. Salinger
 const theHobbit = new CreateBookCard("The Hobbit", "J.R.R. Tolkien", 310, "Fantasy", true, "best-sellers");
 const harryPotter = new CreateBookCard("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 223, "Fantasy, Young Adult", false, "recommendations");
 const daVinciCode = new CreateBookCard("The Da Vinci Code", "Dan Brown", 454, "Mystery, Thriller", false, "recommendations");
-const daVinciCodes = new CreateBookCard("The Da Vinci Code", "Dan Brown", 454, "Mystery, Thriller", true, "recommendations");
+const romeoJulia = new CreateBookCard("Romeo and Julia", "William Shakespeare", 480, "Tragedy", true, "recommendations");
 
 //aside data
 function updateAsideData() {
@@ -231,6 +271,35 @@ function updateAsideData() {
     return accumulator += book.pages; 
   }, 0);
 }
+
+//show hide aside when info icon clicked
+function displayAside() {
+    aside.style.cssText =
+      "display: block; position: fixed; right: 0; top: 0x; height: 100%; z-index: 10";
+    xIconAside.style.display = "inline-block";
+    xIconDivAside.style.cssText = "display: flex; justify-content: flex-end";
+    overlay.style.display = 'block';
+}
+
+function hideAside (){
+  aside.style.display = 'none';
+  overlay.style.display = 'none';
+}
+//call display/hideAside when infoIcon or xIconAside are clicked
+asideInfoIcon.addEventListener("click", displayAside);
+xIconAside.addEventListener("click", () => hideAside());
+//(only on smaller screens, after infoIcon clicked: aside gets position: absolute) if we click outside of aside or the close btn(X-icon) -> hideAside
+document.body.addEventListener("click", function (event) {
+  const clickedInsideAside = aside.contains(event.target);
+  const clickedInfoIcon = event.target.closest(".fa-circle-info");
+  if (
+    !clickedInfoIcon &&
+    !clickedInsideAside &&
+    aside.style.position === "fixed"
+  ) {
+    hideAside();
+  }
+});
 
 updateAsideData();
 
