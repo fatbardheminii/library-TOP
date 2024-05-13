@@ -118,7 +118,9 @@ const bestSellersArray = [];
 const recommendationsArray = [];
 const myLibrary = [];
 
-function CreateBookCard(title, author, pages, genre, isRead, targetRowClass) {
+//Function refactored to class
+class BookCard {
+  constructor(title, author, pages, genre, isRead, targetRowClass) {
   // Assign parameters to 'this' object for access within the function
   this.title = title;
   this.author = author;
@@ -203,6 +205,7 @@ function CreateBookCard(title, author, pages, genre, isRead, targetRowClass) {
   pushBookToArray(this, targetArray);
   //aside data are updated whenever new object is created(func CreateBookCard is called), through console of form
   updateAsideData();
+  }
 }
 
 function pushBookToArray(book, row) {
@@ -229,7 +232,7 @@ function handleFormSubmit(event) {
   const category = document.getElementById("category").value;
 
   // Create new book card using existing CreateBookCard function
-  const newFormBook = new CreateBookCard(title, author, pages, genre, isRead, category);
+  const newFormBook = new BookCard(title, author, pages, genre, isRead, category);
 
   let targetRow;
   if (category === "my-books") {
@@ -252,15 +255,16 @@ formDiv.addEventListener('submit', handleFormSubmit);
 
 //ADD BOOKS
 // Create books using CreateBookCard function with abbreviated names
-const killBird = new CreateBookCard("To Kill a Mockingbird", "Harper Lee", 281, "Fiction", false, "my-books");
-const n1984 = new CreateBookCard("1984", "George Orwell", 328, "Dystopian Fiction", true, "my-books");
-const greatGatsby = new CreateBookCard("The Great Gatsby", "F. Scott Fitzgerald", 180, "Classic Literature", false, "my-books");
-const prideAndPrejudice = new CreateBookCard("Pride and Prejudice", "Jane Austen", 279, "Romance, Classic Literature", false, "best-sellers");
-const catcherInRye = new CreateBookCard("The Catcher in the Rye", "J.D. Salinger", 277, "Coming-of-Age Fiction", false, "best-sellers");
-const theHobbit = new CreateBookCard("The Hobbit", "J.R.R. Tolkien", 310, "Fantasy", true, "best-sellers");
-const harryPotter = new CreateBookCard("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 223, "Fantasy, Young Adult", false, "recommendations");
-const daVinciCode = new CreateBookCard("The Da Vinci Code", "Dan Brown", 454, "Mystery, Thriller", false, "recommendations");
-const romeoJulia = new CreateBookCard("Romeo and Julia", "William Shakespeare", 480, "Tragedy", true, "recommendations");
+// Refactor: from Factory Function to Classes.. new Books created using class
+const killBird = new BookCard("To Kill a Mockingbird", "Harper Lee", 281, "Fiction", false, "my-books");
+const n1984 = new BookCard("1984", "George Orwell", 328, "Dystopian Fiction", true, "my-books");
+const greatGatsby = new BookCard("The Great Gatsby", "F. Scott Fitzgerald", 180, "Classic Literature", false, "my-books");
+const prideAndPrejudice = new BookCard("Pride and Prejudice", "Jane Austen", 279, "Romance, Classic Literature", false, "best-sellers");
+const catcherInRye = new BookCard("The Catcher in the Rye", "J.D. Salinger", 277, "Coming-of-Age Fiction", false, "best-sellers");
+const theHobbit = new BookCard("The Hobbit", "J.R.R. Tolkien", 310, "Fantasy", true, "best-sellers");
+const harryPotter = new BookCard("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 223, "Fantasy, Young Adult", false, "recommendations");
+const daVinciCode = new BookCard("The Da Vinci Code", "Dan Brown", 454, "Mystery, Thriller", false, "recommendations");
+const romeoJulia = new BookCard("Romeo and Julia", "William Shakespeare", 480, "Tragedy", true, "recommendations");
 
 //aside data
 function updateAsideData() {
